@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ww.dao.ThdspMapper" >
+  <resultMap id="BaseResultMap" type="com.ww.model.Thdsp" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="djid" property="djid" jdbcType="VARCHAR" />
+    <result column="spid" property="spid" jdbcType="VARCHAR" />
+    <result column="spname" property="spname" jdbcType="VARCHAR" />
+    <result column="spdw" property="spdw" jdbcType="VARCHAR" />
+    <result column="spxinghao" property="spxinghao" jdbcType="VARCHAR" />
+    <result column="lbid" property="lbid" jdbcType="INTEGER" />
+    <result column="lbname" property="lbname" jdbcType="VARCHAR" />
+    <result column="dj" property="dj" jdbcType="DOUBLE" />
+    <result column="sl" property="sl" jdbcType="INTEGER" />
+    <result column="zj" property="zj" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, djid, spid, spname, spdw, spxinghao, lbid, lbname, dj, sl, zj
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from thdsp
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from thdsp
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ww.model.Thdsp" >
+    insert into thdsp (id, djid, spid, 
+      spname, spdw, spxinghao, 
+      lbid, lbname, dj, sl, 
+      zj)
+    values (#{id,jdbcType=INTEGER}, #{djid,jdbcType=VARCHAR}, #{spid,jdbcType=VARCHAR}, 
+      #{spname,jdbcType=VARCHAR}, #{spdw,jdbcType=VARCHAR}, #{spxinghao,jdbcType=VARCHAR}, 
+      #{lbid,jdbcType=INTEGER}, #{lbname,jdbcType=VARCHAR}, #{dj,jdbcType=DOUBLE}, #{sl,jdbcType=INTEGER}, 
+      #{zj,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ww.model.Thdsp" >
+    insert into thdsp
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="djid != null" >
+        djid,
+      </if>
+      <if test="spid != null" >
+        spid,
+      </if>
+      <if test="spname != null" >
+        spname,
+      </if>
+      <if test="spdw != null" >
+        spdw,
+      </if>
+      <if test="spxinghao != null" >
+        spxinghao,
+      </if>
+      <if test="lbid != null" >
+        lbid,
+      </if>
+      <if test="lbname != null" >
+        lbname,
+      </if>
+      <if test="dj != null" >
+        dj,
+      </if>
+      <if test="sl != null" >
+        sl,
+      </if>
+      <if test="zj != null" >
+        zj,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="djid != null" >
+        #{djid,jdbcType=VARCHAR},
+      </if>
+      <if test="spid != null" >
+        #{spid,jdbcType=VARCHAR},
+      </if>
+      <if test="spname != null" >
+        #{spname,jdbcType=VARCHAR},
+      </if>
+      <if test="spdw != null" >
+        #{spdw,jdbcType=VARCHAR},
+      </if>
+      <if test="spxinghao != null" >
+        #{spxinghao,jdbcType=VARCHAR},
+      </if>
+      <if test="lbid != null" >
+        #{lbid,jdbcType=INTEGER},
+      </if>
+      <if test="lbname != null" >
+        #{lbname,jdbcType=VARCHAR},
+      </if>
+      <if test="dj != null" >
+        #{dj,jdbcType=DOUBLE},
+      </if>
+      <if test="sl != null" >
+        #{sl,jdbcType=INTEGER},
+      </if>
+      <if test="zj != null" >
+        #{zj,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ww.model.Thdsp" >
+    update thdsp
+    <set >
+      <if test="djid != null" >
+        djid = #{djid,jdbcType=VARCHAR},
+      </if>
+      <if test="spid != null" >
+        spid = #{spid,jdbcType=VARCHAR},
+      </if>
+      <if test="spname != null" >
+        spname = #{spname,jdbcType=VARCHAR},
+      </if>
+      <if test="spdw != null" >
+        spdw = #{spdw,jdbcType=VARCHAR},
+      </if>
+      <if test="spxinghao != null" >
+        spxinghao = #{spxinghao,jdbcType=VARCHAR},
+      </if>
+      <if test="lbid != null" >
+        lbid = #{lbid,jdbcType=INTEGER},
+      </if>
+      <if test="lbname != null" >
+        lbname = #{lbname,jdbcType=VARCHAR},
+      </if>
+      <if test="dj != null" >
+        dj = #{dj,jdbcType=DOUBLE},
+      </if>
+      <if test="sl != null" >
+        sl = #{sl,jdbcType=INTEGER},
+      </if>
+      <if test="zj != null" >
+        zj = #{zj,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ww.model.Thdsp" >
+    update thdsp
+    set djid = #{djid,jdbcType=VARCHAR},
+      spid = #{spid,jdbcType=VARCHAR},
+      spname = #{spname,jdbcType=VARCHAR},
+      spdw = #{spdw,jdbcType=VARCHAR},
+      spxinghao = #{spxinghao,jdbcType=VARCHAR},
+      lbid = #{lbid,jdbcType=INTEGER},
+      lbname = #{lbname,jdbcType=VARCHAR},
+      dj = #{dj,jdbcType=DOUBLE},
+      sl = #{sl,jdbcType=INTEGER},
+      zj = #{zj,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
