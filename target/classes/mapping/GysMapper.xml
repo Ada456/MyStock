@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ww.dao.GysMapper" >
+  <resultMap id="BaseResultMap" type="com.ww.model.Gys" >
+    <id column="gysid" property="gysid" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="lxren" property="lxren" jdbcType="VARCHAR" />
+    <result column="lxtel" property="lxtel" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="bz" property="bz" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    gysid, name, lxren, lxtel, address, bz
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from gys
+    where gysid = #{gysid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from gys
+    where gysid = #{gysid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ww.model.Gys" >
+    insert into gys (gysid, name, lxren, 
+      lxtel, address, bz)
+    values (#{gysid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{lxren,jdbcType=VARCHAR}, 
+      #{lxtel,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ww.model.Gys" >
+    insert into gys
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="gysid != null" >
+        gysid,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="lxren != null" >
+        lxren,
+      </if>
+      <if test="lxtel != null" >
+        lxtel,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="bz != null" >
+        bz,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="gysid != null" >
+        #{gysid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="lxren != null" >
+        #{lxren,jdbcType=VARCHAR},
+      </if>
+      <if test="lxtel != null" >
+        #{lxtel,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null" >
+        #{bz,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ww.model.Gys" >
+    update gys
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="lxren != null" >
+        lxren = #{lxren,jdbcType=VARCHAR},
+      </if>
+      <if test="lxtel != null" >
+        lxtel = #{lxtel,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null" >
+        bz = #{bz,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where gysid = #{gysid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ww.model.Gys" >
+    update gys
+    set name = #{name,jdbcType=VARCHAR},
+      lxren = #{lxren,jdbcType=VARCHAR},
+      lxtel = #{lxtel,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      bz = #{bz,jdbcType=VARCHAR}
+    where gysid = #{gysid,jdbcType=INTEGER}
+  </update>
+</mapper>

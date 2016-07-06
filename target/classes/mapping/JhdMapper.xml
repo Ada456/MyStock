@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ww.dao.JhdMapper" >
+  <resultMap id="BaseResultMap" type="com.ww.model.Jhd" >
+    <id column="djid" property="djid" jdbcType="VARCHAR" />
+    <result column="gysid" property="gysid" jdbcType="INTEGER" />
+    <result column="gysname" property="gysname" jdbcType="VARCHAR" />
+    <result column="riqi" property="riqi" jdbcType="DATE" />
+    <result column="yfje" property="yfje" jdbcType="DOUBLE" />
+    <result column="sfje" property="sfje" jdbcType="DOUBLE" />
+    <result column="jystate" property="jystate" jdbcType="VARCHAR" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="bz" property="bz" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    djid, gysid, gysname, riqi, yfje, sfje, jystate, userid, username, bz
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from jhd
+    where djid = #{djid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from jhd
+    where djid = #{djid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ww.model.Jhd" >
+    insert into jhd (djid, gysid, gysname, 
+      riqi, yfje, sfje, jystate, 
+      userid, username, bz
+      )
+    values (#{djid,jdbcType=VARCHAR}, #{gysid,jdbcType=INTEGER}, #{gysname,jdbcType=VARCHAR}, 
+      #{riqi,jdbcType=DATE}, #{yfje,jdbcType=DOUBLE}, #{sfje,jdbcType=DOUBLE}, #{jystate,jdbcType=VARCHAR}, 
+      #{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ww.model.Jhd" >
+    insert into jhd
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="djid != null" >
+        djid,
+      </if>
+      <if test="gysid != null" >
+        gysid,
+      </if>
+      <if test="gysname != null" >
+        gysname,
+      </if>
+      <if test="riqi != null" >
+        riqi,
+      </if>
+      <if test="yfje != null" >
+        yfje,
+      </if>
+      <if test="sfje != null" >
+        sfje,
+      </if>
+      <if test="jystate != null" >
+        jystate,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="bz != null" >
+        bz,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="djid != null" >
+        #{djid,jdbcType=VARCHAR},
+      </if>
+      <if test="gysid != null" >
+        #{gysid,jdbcType=INTEGER},
+      </if>
+      <if test="gysname != null" >
+        #{gysname,jdbcType=VARCHAR},
+      </if>
+      <if test="riqi != null" >
+        #{riqi,jdbcType=DATE},
+      </if>
+      <if test="yfje != null" >
+        #{yfje,jdbcType=DOUBLE},
+      </if>
+      <if test="sfje != null" >
+        #{sfje,jdbcType=DOUBLE},
+      </if>
+      <if test="jystate != null" >
+        #{jystate,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null" >
+        #{bz,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ww.model.Jhd" >
+    update jhd
+    <set >
+      <if test="gysid != null" >
+        gysid = #{gysid,jdbcType=INTEGER},
+      </if>
+      <if test="gysname != null" >
+        gysname = #{gysname,jdbcType=VARCHAR},
+      </if>
+      <if test="riqi != null" >
+        riqi = #{riqi,jdbcType=DATE},
+      </if>
+      <if test="yfje != null" >
+        yfje = #{yfje,jdbcType=DOUBLE},
+      </if>
+      <if test="sfje != null" >
+        sfje = #{sfje,jdbcType=DOUBLE},
+      </if>
+      <if test="jystate != null" >
+        jystate = #{jystate,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null" >
+        bz = #{bz,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where djid = #{djid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ww.model.Jhd" >
+    update jhd
+    set gysid = #{gysid,jdbcType=INTEGER},
+      gysname = #{gysname,jdbcType=VARCHAR},
+      riqi = #{riqi,jdbcType=DATE},
+      yfje = #{yfje,jdbcType=DOUBLE},
+      sfje = #{sfje,jdbcType=DOUBLE},
+      jystate = #{jystate,jdbcType=VARCHAR},
+      userid = #{userid,jdbcType=INTEGER},
+      username = #{username,jdbcType=VARCHAR},
+      bz = #{bz,jdbcType=VARCHAR}
+    where djid = #{djid,jdbcType=VARCHAR}
+  </update>
+</mapper>

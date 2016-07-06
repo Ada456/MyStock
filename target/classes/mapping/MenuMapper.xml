@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ww.dao.MenuMapper" >
+
+  <resultMap id="BaseResultMap" type="com.ww.model.Menu" >
+    <id column="menuid" property="menuid" jdbcType="INTEGER" />
+    <result column="menuname" property="menuname" jdbcType="VARCHAR" />
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="menuurl" property="menuurl" jdbcType="VARCHAR" />
+    <result column="menutype" property="menutype" jdbcType="INTEGER" />
+    <result column="ordernum" property="ordernum" jdbcType="INTEGER" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    menuid, menuname, pid, menuurl, menutype, ordernum, icon
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from menu
+    where menuid = #{menuid,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from menu
+    where menuid = #{menuid,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="com.ww.model.Menu" >
+    insert into menu (menuid, menuname, pid, 
+      menuurl, menutype, ordernum, 
+      icon)
+    values (#{menuid,jdbcType=INTEGER}, #{menuname,jdbcType=VARCHAR}, #{pid,jdbcType=INTEGER}, 
+      #{menuurl,jdbcType=VARCHAR}, #{menutype,jdbcType=INTEGER}, #{ordernum,jdbcType=INTEGER}, 
+      #{icon,jdbcType=VARCHAR})
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.ww.model.Menu" >
+    insert into menu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="menuid != null" >
+        menuid,
+      </if>
+      <if test="menuname != null" >
+        menuname,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="menuurl != null" >
+        menuurl,
+      </if>
+      <if test="menutype != null" >
+        menutype,
+      </if>
+      <if test="ordernum != null" >
+        ordernum,
+      </if>
+      <if test="icon != null" >
+        icon,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="menuid != null" >
+        #{menuid,jdbcType=INTEGER},
+      </if>
+      <if test="menuname != null" >
+        #{menuname,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="menuurl != null" >
+        #{menuurl,jdbcType=VARCHAR},
+      </if>
+      <if test="menutype != null" >
+        #{menutype,jdbcType=INTEGER},
+      </if>
+      <if test="ordernum != null" >
+        #{ordernum,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.ww.model.Menu" >
+    update menu
+    <set >
+      <if test="menuname != null" >
+        menuname = #{menuname,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="menuurl != null" >
+        menuurl = #{menuurl,jdbcType=VARCHAR},
+      </if>
+      <if test="menutype != null" >
+        menutype = #{menutype,jdbcType=INTEGER},
+      </if>
+      <if test="ordernum != null" >
+        ordernum = #{ordernum,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null" >
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where menuid = #{menuid,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.ww.model.Menu" >
+    update menu
+    set menuname = #{menuname,jdbcType=VARCHAR},
+      pid = #{pid,jdbcType=INTEGER},
+      menuurl = #{menuurl,jdbcType=VARCHAR},
+      menutype = #{menutype,jdbcType=INTEGER},
+      ordernum = #{ordernum,jdbcType=INTEGER},
+      icon = #{icon,jdbcType=VARCHAR}
+    where menuid = #{menuid,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from MENU
+  </select>
+</mapper>

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ww.dao.SpxxMapper" >
+  <resultMap id="BaseResultMap" type="com.ww.model.Spxx" >
+    <id column="spid" property="spid" jdbcType="VARCHAR" />
+    <result column="spname" property="spname" jdbcType="VARCHAR" />
+    <result column="xinghao" property="xinghao" jdbcType="VARCHAR" />
+    <result column="lbid" property="lbid" jdbcType="INTEGER" />
+    <result column="lbname" property="lbname" jdbcType="VARCHAR" />
+    <result column="dw" property="dw" jdbcType="VARCHAR" />
+    <result column="jhprice" property="jhprice" jdbcType="DOUBLE" />
+    <result column="chprice" property="chprice" jdbcType="DOUBLE" />
+    <result column="scjj" property="scjj" jdbcType="DOUBLE" />
+    <result column="kcsl" property="kcsl" jdbcType="INTEGER" />
+    <result column="kczj" property="kczj" jdbcType="DOUBLE" />
+    <result column="minnum" property="minnum" jdbcType="INTEGER" />
+    <result column="csname" property="csname" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="bz" property="bz" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    spid, spname, xinghao, lbid, lbname, dw, jhprice, chprice, scjj, kcsl, kczj, minnum, 
+    csname, state, bz
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from spxx
+    where spid = #{spid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from spxx
+    where spid = #{spid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ww.model.Spxx" >
+    insert into spxx (spid, spname, xinghao, 
+      lbid, lbname, dw, jhprice, 
+      chprice, scjj, kcsl, 
+      kczj, minnum, csname, 
+      state, bz)
+    values (#{spid,jdbcType=VARCHAR}, #{spname,jdbcType=VARCHAR}, #{xinghao,jdbcType=VARCHAR}, 
+      #{lbid,jdbcType=INTEGER}, #{lbname,jdbcType=VARCHAR}, #{dw,jdbcType=VARCHAR}, #{jhprice,jdbcType=DOUBLE}, 
+      #{chprice,jdbcType=DOUBLE}, #{scjj,jdbcType=DOUBLE}, #{kcsl,jdbcType=INTEGER}, 
+      #{kczj,jdbcType=DOUBLE}, #{minnum,jdbcType=INTEGER}, #{csname,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ww.model.Spxx" >
+    insert into spxx
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="spid != null" >
+        spid,
+      </if>
+      <if test="spname != null" >
+        spname,
+      </if>
+      <if test="xinghao != null" >
+        xinghao,
+      </if>
+      <if test="lbid != null" >
+        lbid,
+      </if>
+      <if test="lbname != null" >
+        lbname,
+      </if>
+      <if test="dw != null" >
+        dw,
+      </if>
+      <if test="jhprice != null" >
+        jhprice,
+      </if>
+      <if test="chprice != null" >
+        chprice,
+      </if>
+      <if test="scjj != null" >
+        scjj,
+      </if>
+      <if test="kcsl != null" >
+        kcsl,
+      </if>
+      <if test="kczj != null" >
+        kczj,
+      </if>
+      <if test="minnum != null" >
+        minnum,
+      </if>
+      <if test="csname != null" >
+        csname,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="bz != null" >
+        bz,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="spid != null" >
+        #{spid,jdbcType=VARCHAR},
+      </if>
+      <if test="spname != null" >
+        #{spname,jdbcType=VARCHAR},
+      </if>
+      <if test="xinghao != null" >
+        #{xinghao,jdbcType=VARCHAR},
+      </if>
+      <if test="lbid != null" >
+        #{lbid,jdbcType=INTEGER},
+      </if>
+      <if test="lbname != null" >
+        #{lbname,jdbcType=VARCHAR},
+      </if>
+      <if test="dw != null" >
+        #{dw,jdbcType=VARCHAR},
+      </if>
+      <if test="jhprice != null" >
+        #{jhprice,jdbcType=DOUBLE},
+      </if>
+      <if test="chprice != null" >
+        #{chprice,jdbcType=DOUBLE},
+      </if>
+      <if test="scjj != null" >
+        #{scjj,jdbcType=DOUBLE},
+      </if>
+      <if test="kcsl != null" >
+        #{kcsl,jdbcType=INTEGER},
+      </if>
+      <if test="kczj != null" >
+        #{kczj,jdbcType=DOUBLE},
+      </if>
+      <if test="minnum != null" >
+        #{minnum,jdbcType=INTEGER},
+      </if>
+      <if test="csname != null" >
+        #{csname,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null" >
+        #{bz,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ww.model.Spxx" >
+    update spxx
+    <set >
+      <if test="spname != null" >
+        spname = #{spname,jdbcType=VARCHAR},
+      </if>
+      <if test="xinghao != null" >
+        xinghao = #{xinghao,jdbcType=VARCHAR},
+      </if>
+      <if test="lbid != null" >
+        lbid = #{lbid,jdbcType=INTEGER},
+      </if>
+      <if test="lbname != null" >
+        lbname = #{lbname,jdbcType=VARCHAR},
+      </if>
+      <if test="dw != null" >
+        dw = #{dw,jdbcType=VARCHAR},
+      </if>
+      <if test="jhprice != null" >
+        jhprice = #{jhprice,jdbcType=DOUBLE},
+      </if>
+      <if test="chprice != null" >
+        chprice = #{chprice,jdbcType=DOUBLE},
+      </if>
+      <if test="scjj != null" >
+        scjj = #{scjj,jdbcType=DOUBLE},
+      </if>
+      <if test="kcsl != null" >
+        kcsl = #{kcsl,jdbcType=INTEGER},
+      </if>
+      <if test="kczj != null" >
+        kczj = #{kczj,jdbcType=DOUBLE},
+      </if>
+      <if test="minnum != null" >
+        minnum = #{minnum,jdbcType=INTEGER},
+      </if>
+      <if test="csname != null" >
+        csname = #{csname,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null" >
+        bz = #{bz,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where spid = #{spid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ww.model.Spxx" >
+    update spxx
+    set spname = #{spname,jdbcType=VARCHAR},
+      xinghao = #{xinghao,jdbcType=VARCHAR},
+      lbid = #{lbid,jdbcType=INTEGER},
+      lbname = #{lbname,jdbcType=VARCHAR},
+      dw = #{dw,jdbcType=VARCHAR},
+      jhprice = #{jhprice,jdbcType=DOUBLE},
+      chprice = #{chprice,jdbcType=DOUBLE},
+      scjj = #{scjj,jdbcType=DOUBLE},
+      kcsl = #{kcsl,jdbcType=INTEGER},
+      kczj = #{kczj,jdbcType=DOUBLE},
+      minnum = #{minnum,jdbcType=INTEGER},
+      csname = #{csname,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      bz = #{bz,jdbcType=VARCHAR}
+    where spid = #{spid,jdbcType=VARCHAR}
+  </update>
+</mapper>
