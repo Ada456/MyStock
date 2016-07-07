@@ -1,81 +1,55 @@
 package com.ww.controller.power;
 
+import com.ww.service.power.DatabaseService;
 import com.ww.utils.DataCopy;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by Administrator on 2016/7/6 0006.
+ * 数据库备份
  */
 @Controller
-@RequestMapping("database")
+@RequestMapping("power")
 public class DatabaseController {
 
-    private String datapath;
-    private String datafile;
-    private String delstate;
+    @Autowired
+    private DatabaseService databaseService;
+
+
+    @RequestMapping("/beifen")
+    public String index(){
+        return "power/beifen";
+    }
 
     /**
      * 备份数据库
      */
     @RequestMapping("/backup")
-    public String backup(){
-        try {
-            SimpleDateFormat bartDateFormat = new SimpleDateFormat("yyyy_MM_dd_hh_mm");
-            String d = bartDateFormat.format(new Date());
-            DataCopy.backup(datapath+"data_"+d+".sql");
-            return "success";
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "fail";
-        }
+    @ResponseBody
+    public String backup(String datapath){
+        return databaseService.backup(datapath);
     }
 
     /**
      * 恢复数据库
      */
     @RequestMapping("/load")
-    public String load() {
-        try {
-            SimpleDateFormat bartDateFormat = new SimpleDateFormat("yyyy_MM_dd_hh_mm");
-            String d = bartDateFormat.format(new Date());
-            DataCopy.backup("D:\\MyStockData\\old_"+d+".sql");
-            DataCopy.load(datafile);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+    public String load(String datafile) {
+        return databaseService.load(datafile);
     }
 
     /**
      * 系统初始化（删除所有营业数据）
      */
     @RequestMapping("/init")
-    public String init(){
-        try {
-            SimpleDateFormat bartDateFormat = new SimpleDateFormat("yyyy_MM_dd_hh_mm");
-            String d = bartDateFormat.format(new Date());
-            DataCopy.backup("D:\\MyStockData\\del_"+d+".sql");
-            DataCopy.delete(delstate);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public void setDatapath(String datapath) {
-        this.datapath = datapath;
-    }
-
-    public void setDatafile(String datafile) {
-        this.datafile = datafile;
-    }
-
-    public void setDelstate(String delstate) {
-        this.delstate = delstate;
+    public String init(String delstate){
+        return databaseService.init(delstate);
     }
 
 }

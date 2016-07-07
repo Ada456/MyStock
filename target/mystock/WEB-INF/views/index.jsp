@@ -66,8 +66,8 @@
             <c:forEach items="${pmenus}" var="menu1" varStatus="varStatus1">
             <c:if test="${!varStatus1.last}">
             {
-                id: p++,
-                homePage: c,
+                id: ++p,
+//                homePage: c,
                 menu: [{
                     text: '${menu1.menuname}',
                     items: [
@@ -87,7 +87,7 @@
             </c:if>
             <c:if test="${varStatus1.last}">
             {
-                id: p++,
+                id: ++p,
                 homePage: c,
                 menu: [{
                     text: '${menu1.menuname}',

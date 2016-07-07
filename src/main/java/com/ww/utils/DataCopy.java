@@ -16,7 +16,7 @@ public class DataCopy {
          * 注意：此时定向符">"和"<"是不能用的
          */
         try {
-			backup("e:/mystock.sql");
+//			backup("e:/mystock.sql");
 			load("e:/mystock.sql");
 			//delete("1");
 		} catch (Exception e) {

@@ -1,6 +1,7 @@
 package com.ww.service.power;
 
 import com.ww.dao.UserMapper;
+import com.ww.entity.Page;
 import com.ww.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,14 +20,15 @@ public class UserService {
     @Autowired
     private UserMapper userMapper;
 
-    public List<User> getUsers(String username,String logincode){
+    public List<User> getUsersByPage(String username,String logincode,Page page){
 
         //对查询条件进行封装
-        Map<String,String> search = new HashMap<>();
+        Map<String,Object> search = new HashMap<>();
         search.put("username",username);
         search.put("logincode",logincode);
+        search.put("page",page);
 
-        List<User> userList = userMapper.selectAll(search);
+        List<User> userList = userMapper.selectUserListByPage(search);
         return  userList;
     }
 

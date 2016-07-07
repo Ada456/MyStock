@@ -17,7 +17,6 @@ import java.util.Map;
  * Created by Administrator on 2016/7/2 0002.
  */
 @Controller
-@SessionAttributes("")
 public class MenuContoller {
 
     @Autowired

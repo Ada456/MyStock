@@ -10,19 +10,13 @@
         <result column="bz" property="bz" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <resultMap id="UserRoleMap" type="com.ww.model.User" extends="BaseResultMap">
-        <association property="role" javaType="com.ww.model.Role">
-            <id property="roleid" column="roleid" jdbcType="INTEGER"/>
-            <result property="rolename" column="rolename" jdbcType="VARCHAR"/>
-            <result property="bz" column="bz" jdbcType="VARCHAR"/>
-        </association>
-    </resultMap>
+
 
     <sql id="Base_Column_List">
     userid, logincode, password, roleid,username, state, bz
   </sql>
 
-    <select id="selectByPrimaryKey" resultMap="UserRoleMap" parameterType="java.lang.Integer">
+    <select id="selectByPrimaryKey" resultMap="UserRoleList" parameterType="java.lang.Integer">
     select 
     u.userid, u.logincode, u.password, u.roleid,u.username, u.state, u.bz,r.rolename
     from users u,role r
@@ -133,9 +127,33 @@
     where userid = #{userid,jdbcType=INTEGER}
   </update>
 
-    <select id="selectAll" resultMap="UserRoleMap" parameterType="java.util.Map">
+    <select id="selectUserList" resultMap="UserRoleList" parameterType="java.util.Map">
         select u.userid, u.username,
-        u.logincode, u.state,u.bz,r.roleid,r.rolename,r.bz from users u
+        u.logincode, u.state,u.bz,r.roleid,r.rolename,r.bz r_bz from users u
+        ,role r where u.roleid = r.roleid
+        <if test="username != null &amp;&amp; !&quot;&quot;.equals(username)">and u.username like '%'
+            #{username} '%'
+        </if>
+        <if test="logincode != null &amp;&amp; !&quot;&quot;.equals(logincode)">and u.logincode like '%'
+            #{logincode} '%'
+        </if>
+        ORDER BY userid
+    </select>
+
+
+    <resultMap id="UserRoleList" type="com.ww.model.User" extends="BaseResultMap">
+        <association property="role" javaType="com.ww.model.Role">
+            <id property="roleid" column="roleid" jdbcType="INTEGER"/>
+            <result property="rolename" column="rolename" jdbcType="VARCHAR"/>
+            <result property="bz" column="r_bz" jdbcType="VARCHAR"/>
+        </association>
+    </resultMap>
+
+
+    <!--分页查询-->
+    <select id="selectUserListByPage" resultMap="UserRoleList" parameterType="java.util.Map">
+        select u.userid, u.username,
+        u.logincode, u.state,u.bz ,r.roleid,r.rolename,r.bz r_bz from users u
         ,role r where u.roleid = r.roleid
         <if test="username != null &amp;&amp; !&quot;&quot;.equals(username)">and u.username like '%'
             #{username} '%'

@@ -3,9 +3,7 @@
         "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
-  </welcome-file-list>
+
   <display-name>MyStock</display-name>
 
   <!--spring配置文件路径-->
@@ -42,6 +40,9 @@
     <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
   </listener>
 
+  <!--分页插件-->
+
+
   <!--springmvc的dispatcherServlet-->
   <servlet>
     <servlet-name>rest</servlet-name>
@@ -61,10 +62,14 @@
     <url-pattern>/</url-pattern>
   </servlet-mapping>
 
+
   <!-- 配置session超时时间，单位分钟 -->
   <session-config>
     <session-timeout>30</session-timeout>
   </session-config>
 
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
 
 </web-app>
